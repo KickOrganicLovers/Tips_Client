@@ -1,0 +1,12 @@
+body {
+    margin: 0;
+}
+
+::-webkit-scrollbar {
+    background: gray;
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: white;
+}
