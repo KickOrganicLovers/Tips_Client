@@ -1,16 +1,12 @@
 import styled from "styled-components";
 import React from "react";
+import {ArticleScheme} from "../../typs";
 
-const ArticleContainer: React.FC = () => {
-
-
-
-
-
+const ArticleContainer: React.FC<ArticleScheme> = (props: ArticleScheme) => {
     return (
         <Wrapper>
             <ImgWrapper></ImgWrapper>
-            <SentenceWrapper></SentenceWrapper>
+            <SentenceWrapper>{props.title}</SentenceWrapper>
         </Wrapper>
     )
 }
