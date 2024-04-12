@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import CategoryBtn from "./CategoryBtn";
+import HomeBtn from "./HomeBtn";
+import SearchBtn from "./SearchBtn";
 
 export default class Header extends React.Component<any, any> {
     render() {
@@ -9,8 +11,8 @@ export default class Header extends React.Component<any, any> {
 
             </S_img>
             <S_ul>
-                <S_li_0>top</S_li_0>
-                <S_li_1>search</S_li_1>
+                <S_li_0><HomeBtn/></S_li_0>
+                <S_li_1><SearchBtn/></S_li_1>
                 <S_li_2><CategoryBtn/></S_li_2>
             </S_ul>
         </S_header>
@@ -25,7 +27,7 @@ const S_header = styled.header`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color: maroon;`
+    background-color: #2d2d2d;`
 
 const S_img = styled.img`
     height: 80%;
@@ -33,23 +35,22 @@ const S_img = styled.img`
 
 const S_ul = styled.ul`
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
+    gap: 30px;
     align-items: center;
     width: 20%;
     min-width: 200px;
     height: 100%;
-    margin: 0px 30px 0px 0px;
+    margin: 0px 20px 0px 0px;
     padding: 0px;
 `
 
 const S_li_0 = styled.li`
-    color: darkgrey;
     width: auto;
     list-style: none;
     font-family: 'Poppins', sans-serif;
 `
 const S_li_1 = styled.li`
-    color: darkgrey;
     width: auto;
     list-style: none;
     font-family: 'Poppins', sans-serif;

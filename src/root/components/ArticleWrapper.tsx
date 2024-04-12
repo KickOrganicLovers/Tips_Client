@@ -5,20 +5,21 @@ import {ArticleScheme} from "../../typs";
 
 
 const ArticleWrapper: React.FC = () => {
-    const[articleArr, setArticleArray] = useState<ArticleScheme[]>([])
+    const [articleArr, setArticleArray] = useState<ArticleScheme[]>([])
 
     useEffect(() => {
         fetchData().then((val) => {
-            if(val !== undefined){
+            if (val !== undefined) {
                 setArticleArray(val)
             }
-    })}, [])
+        })
+    }, [])
 
-    async function fetchData(){
+    async function fetchData() {
         const res = await fetch('http://localhost:5000/get')
         const data = await res.json()
         console.log(data)
-        if(Array.isArray(data)){
+        if (Array.isArray(data)) {
             return data
         }
     }
@@ -28,11 +29,12 @@ const ArticleWrapper: React.FC = () => {
         <Wrapper>
             {(() => {
                 const items = []
-                for(let i = 0; i < articleArr.length; i++){
-                    if(articleArr[i] === undefined){
-                        items.push(<ArticleContainer title={''} img_link={''} sentence={''} author={''} />)
-                    }else{
-                        items.push(<ArticleContainer title={articleArr[i].title} img_link={articleArr[i].img_link} sentence={articleArr[i].sentence} author={articleArr[i].author}/>)
+                for (let i = 0; i < articleArr.length; i++) {
+                    if (articleArr[i] === undefined) {
+                        items.push(<ArticleContainer title={''} img_link={''} sentence={''} author={''}/>)
+                    } else {
+                        items.push(<ArticleContainer title={articleArr[i].title} img_link={articleArr[i].img_link}
+                                                     sentence={articleArr[i].sentence} author={articleArr[i].author}/>)
                     }
                 }
                 return items
@@ -53,8 +55,9 @@ const Wrapper = styled.div`
     height: 100%;
     box-sizing: border-box;
     overflow-y: scroll;
-    background-color: lightgray;
+    background-color: #424242;
     @media screen and (max-width: 1024px) {
         width: 100%;
     }
 `
+

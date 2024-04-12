@@ -1,19 +1,22 @@
 import React, {useContext} from "react";
 import styled from "styled-components";
-import Category from "./Category";
-import {ContextToCategoryBar} from "./CategoryBtn";
+import CategoryList from "./CategoryList";
 import {useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
+import AccountBanner from "./AccountBanner";
+import Category from "./Category";
 
 const CategoryBar: React.FC = () => {
     const SSOCB = useSelector<RootState, RootState['setStatusOfCategoryBtn']>((state) => state.setStatusOfCategoryBtn)
     return (<Wrapper isActive={SSOCB.isActive}>
+        <AccountBanner/>
+        <Category/>
         <S_ul>
             <S_li>
-                <Category title={'test'} details={['りんご', 'ごりら', 'らっぱ']}/>
+                <CategoryList title={'test'} details={['りんご', 'ごりら', 'らっぱ']}/>
             </S_li>
             <S_li>
-                <Category title={'test1'} details={['梶本', '高松', '西村']}/>
+                <CategoryList title={'test1'} details={['梶本', '高松', '西村']}/>
             </S_li>
         </S_ul>
     </Wrapper>)
@@ -25,14 +28,21 @@ const Wrapper = styled.div<{ isActive: boolean }>`
     width: 20%;
     min-width: 200px;
     height: 100%;
-    background-color: maroon;
+    background-color: #2d2d2d;
     box-sizing: border-box;
     @media screen and (max-width: 1024px) {
         min-width: 0px;
-        width: ${(props) => {console.log(props.isActive) 
-            return props.isActive ? '200px' : '0px'}};
-        transition: 0.5s;
-        overflow: hidden;
+        height: 92vh;
+        width: ${(props) => {
+            console.log(props.isActive)
+            return props.isActive ? '200px' : '0px'
+        }};
+        transition: width 0.5s;
+        position: absolute;
+        right: 0px;
+        z-index: 50;
+        overflow-x: hidden;
+        overflow-y: scroll;
     }`
 
 const S_ul = styled.ul`
@@ -42,4 +52,4 @@ const S_ul = styled.ul`
 const S_li = styled.li`
 
     list-style: none;
-    background-color: maroon`
+    background-color: #2d2d2d`

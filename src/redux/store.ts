@@ -1,9 +1,11 @@
 import {configureStore} from "@reduxjs/toolkit";
-import {SSOCB_Reducer} from "./setStatusOfCategoryBtn";
+import {SSOCB_Reducer} from "./setStatusOfCategoryBtnSlice";
+import {SPM_Reducer} from "./setPageModeSlice";
 
 const store = configureStore({
     reducer: {
-        setStatusOfCategoryBtn: SSOCB_Reducer
+        setStatusOfCategoryBtn: SSOCB_Reducer,
+        setPageMode: SPM_Reducer
     }
 })
 

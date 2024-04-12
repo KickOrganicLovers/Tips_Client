@@ -3,7 +3,7 @@ export interface CategoryScheme {
     details: string[]
 }
 
-export interface ArticleScheme{
+export interface ArticleScheme {
     title: string
     img_link: string
     sentence: string

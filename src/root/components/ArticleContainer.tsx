@@ -5,7 +5,7 @@ import {ArticleScheme} from "../../typs";
 const ArticleContainer: React.FC<ArticleScheme> = (props: ArticleScheme) => {
     return (
         <Wrapper>
-            <ImgWrapper></ImgWrapper>
+            <ImgWrapper><img/></ImgWrapper>
             <SentenceWrapper>{props.title}</SentenceWrapper>
         </Wrapper>
     )
@@ -17,10 +17,19 @@ const Wrapper = styled.div`
     ////margin: 20px;
     //width: 15vw;
     //height: 15vw;
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    animation: fadeIn 0.5s ease-in-out;
     height: 0;
     padding-bottom: 100%;
     position: relative;
-    background-color: yellow`
+    background-color: yellow;`
 
 const SentenceWrapper = styled.div`
     position: absolute;
@@ -28,7 +37,8 @@ const SentenceWrapper = styled.div`
     left: 0;
     width: 100%;
     height: 30%;
-    background-color: white;`
+    background-color: grey;
+    color: white`
 
 const ImgWrapper = styled.div`
     position: absolute;
@@ -36,4 +46,4 @@ const ImgWrapper = styled.div`
     left: 0;
     width: 100%;
     height: 70%;
-    background-color: maroon;`
+    background-color: #2d2d2d;`
