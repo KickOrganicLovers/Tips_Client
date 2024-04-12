@@ -37,7 +37,7 @@ const Wrapper = styled.div`
 
 const FadeLayer = styled.div<{ isActive: boolean }>`
     display: none;
-    @media screen and (max-width: 1024px){
+    @media screen and (max-width: 1024px) {
         width: 100%;
         height: 100%;
         background-color: black;
@@ -47,7 +47,7 @@ const FadeLayer = styled.div<{ isActive: boolean }>`
         left: 0px;
         z-index: 25;
         display: ${(props) => {
-    return props.isActive ? 'inline-block' : 'none'
-}};`
+            return props.isActive ? 'inline-block' : 'none'
+        }};`
 
 export default Main
