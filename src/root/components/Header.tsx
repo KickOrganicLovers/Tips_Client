@@ -7,9 +7,10 @@ import SearchBtn from "./SearchBtn";
 export default class Header extends React.Component<any, any> {
     render() {
         return <S_header>
-            <S_img src={'./../public/img/PageTitle.png'}>
-
-            </S_img>
+            <S_div>
+                <S_img_1 src={'./../public/img/PageIcon.png'}></S_img_1>
+                <S_img_2 src={'./../public/img/PageTitle.png'}></S_img_2>
+            </S_div>
             <S_ul>
                 <S_li_0><HomeBtn/></S_li_0>
                 <S_li_1><SearchBtn/></S_li_1>
@@ -29,9 +30,25 @@ const S_header = styled.header`
     align-items: center;
     background-color: #2d2d2d;`
 
-const S_img = styled.img`
-    height: 80%;
+const S_div = styled.div`
+    margin-left: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    gap: 10px;
+    height: 100%;
     width: auto`
+
+const S_img_1 = styled.img`
+    height: 60%;
+    width: auto;
+    `
+
+const S_img_2 = styled.img`
+    height: 50%;
+    width: auto`
+
 
 const S_ul = styled.ul`
     display: flex;

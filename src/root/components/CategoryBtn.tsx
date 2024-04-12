@@ -28,6 +28,6 @@ export default CategoryBtn
 
 const S_AiOutlineMenu = styled(AiOutlineMenu)<{ isActive: boolean }>`
     color: ${(props) => {
-        return props.isActive ? 'white' : 'darkgrey'
+        return props.isActive ? '#2c8a8a' : 'darkgrey'
     }};
     font-size: 25px;`

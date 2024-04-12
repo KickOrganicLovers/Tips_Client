@@ -70,4 +70,8 @@ const S_AiOutlinePlusCircle = styled(AiOutlinePlusCircle)`
     top: 8px;
     left: 10px;
     font-size: 15px;
-    color: #3b3b3b`
+    color: #3b3b3b;
+
+    &:hover {
+        color: #2c8a8a;
+    }`

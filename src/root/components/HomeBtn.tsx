@@ -25,5 +25,5 @@ export default HomeBtn
 const S_AiOutlineHome = styled(AiOutlineHome)<{ pageMode: string }>`
     font-size: 25px;
     color: ${(props) => {
-        return props.pageMode === 'home' ? 'white' : 'darkgrey'
+        return props.pageMode === 'home' ? '#2c8a8a' : 'darkgrey'
     }}`

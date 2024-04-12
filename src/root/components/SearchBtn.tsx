@@ -26,5 +26,5 @@ export default SearchBtn
 const S_AiOutlineSearch = styled(AiOutlineSearch)<{ pageMode: string }>`
     font-size: 25px;
     color: ${(props) => {
-        return props.pageMode === 'search' ? 'white' : 'darkgrey'
+        return props.pageMode === 'search' ? '#2c8a8a' : 'darkgrey'
     }}`
