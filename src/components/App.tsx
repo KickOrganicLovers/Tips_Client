@@ -1,7 +1,7 @@
 import React from "react";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import Main from "./components/Main";
+import Footer from "./footer/Footer";
+import Header from "./header/Header";
+import Main from "./Main";
 import {Provider} from "react-redux";
 import store from "../redux/store";
 

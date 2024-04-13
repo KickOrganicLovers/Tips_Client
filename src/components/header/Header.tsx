@@ -59,7 +59,7 @@ const S_ul = styled.ul`
     min-width: 200px;
     height: 100%;
     margin: 0px 20px 0px 0px;
-    padding: 0px;
+    padding: 4px 0px 0px 0px;
 `
 
 const S_li_0 = styled.li`
