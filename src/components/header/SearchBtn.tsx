@@ -4,14 +4,21 @@ import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "../../redux/store";
 import {clickHomeBtn, clickSearchBtn} from "../../redux/setPageModeSlice";
+import {useNavigate} from "react-router-dom";
 
 const SearchBtn: React.FC = () => {
+    const navigate = useNavigate()
     const SPM = useSelector<RootState, RootState['setPageMode']>((state) => {
         return state.setPageMode
     })
     const dispatch = useDispatch<AppDispatch>()
 
-    const clickEventHandler = useCallback(() => {
+    const clickEventHandler = () => {
+        navigate('/search')
+        togglePageMode()
+    }
+
+    const togglePageMode = useCallback(() => {
         dispatch(clickSearchBtn())
     }, [dispatch])
 

@@ -4,7 +4,7 @@ import ArticleContainer from "./ArticleContainer";
 import {ArticleScheme} from "../../typs";
 
 
-const ArticleWrapper: React.FC = () => {
+const ArticlePage: React.FC = () => {
     const [articleArr, setArticleArray] = useState<ArticleScheme[]>([])
 
     useEffect(() => {
@@ -44,7 +44,7 @@ const ArticleWrapper: React.FC = () => {
 }
 
 
-export default ArticleWrapper
+export default ArticlePage
 
 const Wrapper = styled.div`
     padding: 15px;

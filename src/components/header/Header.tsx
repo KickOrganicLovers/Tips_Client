@@ -8,8 +8,8 @@ export default class Header extends React.Component<any, any> {
     render() {
         return <S_header>
             <S_div>
-                <S_img_1 src={'./../public/img/PageIcon.png'}></S_img_1>
-                <S_img_2 src={'./../public/img/PageTitle.png'}></S_img_2>
+                <S_img_1 src={'./img/PageIcon.png'}></S_img_1>
+                <S_img_2 src={'./img/PageTitle.png'}></S_img_2>
             </S_div>
             <S_ul>
                 <S_li_0><HomeBtn/></S_li_0>

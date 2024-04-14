@@ -1,26 +1,26 @@
 import React from "react";
 import styled from "styled-components";
-import ArticleWrapper from "./ArticleWrapper";
+import ArticlePage from "./root/ArticlePage";
 import {useSelector} from "react-redux";
-import {RootState} from "../../redux/store";
-import CategoryBar from "./CategoryBar";
-import {Fa0} from "react-icons/fa6";
+import {RootState} from "../redux/store";
+import CategoryBar from "./sidebar/CategoryBar";
+import {Route, Routes} from "react-router-dom";
+import SearchPage from "./search/SearchPage";
+import LoginPage from "./login/LoginPage";
 
 const Main: React.FC = () => {
     const SSOCB = useSelector<RootState, RootState['setStatusOfCategoryBtn']>((state) => {
         return state.setStatusOfCategoryBtn
     })
-    const SPM = useSelector<RootState, RootState['setPageMode']>((state) => {
-        return state.setPageMode
-    })
 
     return (
         <Wrapper>
             <FadeLayer isActive={SSOCB.isActive}/>
-            {(() => {
-                console.log(SPM.pageMode)
-                return SPM.pageMode === 'home' ? <ArticleWrapper/> : <h1>this is test</h1>
-            })()}
+            <Routes>
+                <Route path={'/'} element={<ArticlePage/>}/>
+                <Route path={'/search'} element={<SearchPage/>}/>
+                <Route path={'/login'} element={<LoginPage/>}/>
+            </Routes>
             <CategoryBar/>
         </Wrapper>
     )

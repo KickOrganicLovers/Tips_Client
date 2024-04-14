@@ -8,11 +8,11 @@ import store from "../redux/store";
 export default class App extends React.Component {
     render() {
         return (
-            <Provider store={store}>
+            <div>
                 <Header/>
                 <Main/>
                 {/*<Footer/>*/}
-            </Provider>
+            </div>
         )
     }
 }

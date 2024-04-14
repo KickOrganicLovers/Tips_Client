@@ -28,8 +28,7 @@ const Wrapper = styled.div`
     animation: fadeIn 0.5s ease-in-out;
     height: 0;
     padding-bottom: 100%;
-    position: relative;
-    background-color: yellow;`
+    position: relative;`
 
 const SentenceWrapper = styled.div`
     position: absolute;

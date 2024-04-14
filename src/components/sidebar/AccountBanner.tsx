@@ -5,7 +5,7 @@ import {AiOutlinePlusCircle} from "react-icons/ai";
 const AccountBanner: React.FC = () => {
     return (<Wrapper>
         <Upper_Wrapper>
-            <Img_Wrapper><S_img src={'./../public/img/SampleUserImage.png'}/></Img_Wrapper>
+            <Img_Wrapper><S_img src={'./img/SampleUserImage.png'}/></Img_Wrapper>
             <UserName_Wrapper>Lychee</UserName_Wrapper>
         </Upper_Wrapper>
         <Lower_Wrapper>

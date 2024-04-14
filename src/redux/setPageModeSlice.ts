@@ -1,4 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
+import {useNavigate} from "react-router-dom";
+
 
 const setPageModeSlice = createSlice({
     name: 'setPageMode',
@@ -7,12 +9,12 @@ const setPageModeSlice = createSlice({
     },
     reducers: {
         clickSearchBtn: (state) => {
-            if (state.pageMode === 'home') {
+            if (state.pageMode !== 'search') {
                 state.pageMode = 'search'
             }
         },
         clickHomeBtn: (state) => {
-            if (state.pageMode === 'search') {
+            if (state.pageMode !== 'home') {
                 state.pageMode = 'home'
             }
         }
