@@ -15,10 +15,10 @@ const SearchBtn: React.FC = () => {
 
     const clickEventHandler = () => {
         navigate('/search')
-        togglePageMode()
+        launchDispatch()
     }
 
-    const togglePageMode = useCallback(() => {
+    const launchDispatch = useCallback(() => {
         dispatch(clickSearchBtn())
     }, [dispatch])
 

@@ -1,11 +1,13 @@
 import {configureStore} from "@reduxjs/toolkit";
-import {SSOCB_Reducer} from "./setStatusOfCategoryBtnSlice";
+import {SSBS_Reducer} from "./setSideBarStatusSlice";
 import {SPM_Reducer} from "./setPageModeSlice";
+import {SLS_Reducer} from "./setLoginStatusSlice";
 
 const store = configureStore({
     reducer: {
-        setStatusOfCategoryBtn: SSOCB_Reducer,
-        setPageMode: SPM_Reducer
+        setSideBarStatus: SSBS_Reducer,
+        setPageMode: SPM_Reducer,
+        setLoginStatus: SLS_Reducer
     }
 })
 

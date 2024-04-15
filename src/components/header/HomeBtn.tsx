@@ -17,10 +17,10 @@ const HomeBtn: React.FC = () => {
 
     const clickEventHandler = () => {
         navigate('/')
-        togglePageMode()
+        launchDispatch()
     }
 
-    const togglePageMode = useCallback(() => {
+    const launchDispatch = useCallback(() => {
         dispatch(clickHomeBtn())
     }, [dispatch])
 

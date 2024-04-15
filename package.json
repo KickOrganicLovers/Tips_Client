@@ -7,7 +7,7 @@
     "build": "webpack",
     "start": "webpack-dev-server"
   },
-  "author": "KickOrganicLovers",
+  "author": "Feet_Up",
   "license": "ISC",
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.3",

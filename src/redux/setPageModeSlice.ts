@@ -17,11 +17,16 @@ const setPageModeSlice = createSlice({
             if (state.pageMode !== 'home') {
                 state.pageMode = 'home'
             }
+        },
+        clickLoginBtn: (state) => {
+            if(state.pageMode !== 'login') {
+                state.pageMode = 'login'
+            }
         }
     }
 })
 
-export const {clickSearchBtn, clickHomeBtn} = setPageModeSlice.actions
+export const {clickSearchBtn, clickHomeBtn, clickLoginBtn} = setPageModeSlice.actions
 
 export const SPM_Reducer = setPageModeSlice.reducer
 

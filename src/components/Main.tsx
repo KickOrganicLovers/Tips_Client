@@ -9,13 +9,13 @@ import SearchPage from "./search/SearchPage";
 import LoginPage from "./login/LoginPage";
 
 const Main: React.FC = () => {
-    const SSOCB = useSelector<RootState, RootState['setStatusOfCategoryBtn']>((state) => {
-        return state.setStatusOfCategoryBtn
+    const SSBS = useSelector<RootState, RootState['setSideBarStatus']>((state) => {
+        return state.setSideBarStatus
     })
 
     return (
         <Wrapper>
-            <FadeLayer isActive={SSOCB.isActive}/>
+            <FadeLayer isActive={SSBS.isActive}/>
             <Routes>
                 <Route path={'/'} element={<ArticlePage/>}/>
                 <Route path={'/search'} element={<SearchPage/>}/>

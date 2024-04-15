@@ -1,16 +1,36 @@
-import React from "react";
+import React, {useCallback} from "react";
 import styled from "styled-components";
 import {AiOutlinePlusCircle} from "react-icons/ai";
+import {useDispatch, useSelector} from "react-redux";
+import {AppDispatch, RootState} from "../../redux/store";
+import {Link, useNavigate} from "react-router-dom";
+import {clickLoginBtn} from "../../redux/setPageModeSlice";
+import {disable, enable, toggle} from "../../redux/setSideBarStatusSlice";
 
 const AccountBanner: React.FC = () => {
+    const SLS = useSelector<RootState, RootState['setLoginStatus']>((state) => state.setLoginStatus)
+    const dispatch = useDispatch<AppDispatch>()
+    const navigate = useNavigate()
+
+    const launchDispatch  = useCallback(() => {
+        dispatch(clickLoginBtn())
+        dispatch(disable())
+    }, [dispatch])
+
+
+    const clickEventHandler = () => {
+        navigate('/login')
+        launchDispatch()
+    }
+
     return (<Wrapper>
         <Upper_Wrapper>
             <Img_Wrapper><S_img src={'./img/SampleUserImage.png'}/></Img_Wrapper>
-            <UserName_Wrapper>Lychee</UserName_Wrapper>
+            <UserName_Wrapper>{(() => SLS.isLoggedIn? SLS.username : <S_p_2 onClick={clickEventHandler}>Login</S_p_2>)()}</UserName_Wrapper>
         </Upper_Wrapper>
         <Lower_Wrapper>
             <S_AiOutlinePlusCircle/>
-            <S_p>記事を作成</S_p>
+            <S_p_1>記事を作成</S_p_1>
         </Lower_Wrapper>
     </Wrapper>)
 }
@@ -56,7 +76,7 @@ const S_img = styled.img`
     width: 100%;
     height: 100%;`
 
-const S_p = styled.p`
+const S_p_1 = styled.p`
     position: absolute;
     top: 4px;
     left: 30px;
@@ -74,4 +94,12 @@ const S_AiOutlinePlusCircle = styled(AiOutlinePlusCircle)`
 
     &:hover {
         color: #2c8a8a;
+    }`
+
+const S_p_2 = styled.p`
+    padding: 0px;
+    margin: 0px;
+    color: lightgray;
+    &:hover{
+        color: white;
     }`
