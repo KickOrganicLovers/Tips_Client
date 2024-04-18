@@ -9,3 +9,11 @@ export interface ArticleScheme {
     sentence: string
     author: string
 }
+
+export interface LoginScheme {
+    isLoggedIn: boolean
+    loginStatus: {
+        err: string
+        username: string
+    }
+}

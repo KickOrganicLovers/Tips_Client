@@ -1,7 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-const setSideBarStatusSlice = createSlice({
-    name: 'setSideBarStatus',
+const sideBarStatusSlice = createSlice({
+    name: 'SideBarStatus',
     initialState: {
         isActive: false
     },
@@ -18,8 +18,8 @@ const setSideBarStatusSlice = createSlice({
     }
 })
 
-export const {toggle, enable, disable} = setSideBarStatusSlice.actions
+export const {toggle, enable, disable} = sideBarStatusSlice.actions
 
-export const SSBS_Reducer = setSideBarStatusSlice.reducer
+export const SBS_Reducer = sideBarStatusSlice.reducer
 
-export default setSideBarStatusSlice
+export default sideBarStatusSlice

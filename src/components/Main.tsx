@@ -9,13 +9,13 @@ import SearchPage from "./search/SearchPage";
 import LoginPage from "./login/LoginPage";
 
 const Main: React.FC = () => {
-    const SSBS = useSelector<RootState, RootState['setSideBarStatus']>((state) => {
-        return state.setSideBarStatus
+    const SBS = useSelector<RootState, RootState['SideBarStatus']>((state) => {
+        return state.SideBarStatus
     })
 
     return (
         <Wrapper>
-            <FadeLayer isActive={SSBS.isActive}/>
+            <FadeLayer isActive={SBS.isActive}/>
             <Routes>
                 <Route path={'/'} element={<ArticlePage/>}/>
                 <Route path={'/search'} element={<SearchPage/>}/>

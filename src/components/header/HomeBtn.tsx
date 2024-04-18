@@ -3,15 +3,15 @@ import {AiOutlineHome} from "react-icons/ai";
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "../../redux/store";
-import {clickHomeBtn} from "../../redux/setPageModeSlice";
+import {setHomeMode} from "../../redux/PageModeSlice";
 import {useNavigate} from "react-router-dom";
 
 const HomeBtn: React.FC = () => {
 
     const navigate = useNavigate()
 
-    const SPM = useSelector<RootState, RootState['setPageMode']>((state) => {
-        return state.setPageMode
+    const PM = useSelector<RootState, RootState['PageMode']>((state) => {
+        return state.PageMode
     })
     const dispatch = useDispatch<AppDispatch>()
 
@@ -21,11 +21,11 @@ const HomeBtn: React.FC = () => {
     }
 
     const launchDispatch = useCallback(() => {
-        dispatch(clickHomeBtn())
+        dispatch(setHomeMode())
     }, [dispatch])
 
     return (
-        <S_AiOutlineHome pageMode={SPM.pageMode} onClick={clickEventHandler}/>
+        <S_AiOutlineHome pageMode={PM.pageMode} onClick={clickEventHandler}/>
     )
 }
 

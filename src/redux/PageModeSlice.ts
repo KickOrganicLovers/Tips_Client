@@ -2,23 +2,23 @@ import {createSlice} from "@reduxjs/toolkit";
 import {useNavigate} from "react-router-dom";
 
 
-const setPageModeSlice = createSlice({
-    name: 'setPageMode',
+const pageModeSlice = createSlice({
+    name: 'PageMode',
     initialState: {
         pageMode: 'home'
     },
     reducers: {
-        clickSearchBtn: (state) => {
+        setSearchMode: (state) => {
             if (state.pageMode !== 'search') {
                 state.pageMode = 'search'
             }
         },
-        clickHomeBtn: (state) => {
+        setHomeMode: (state) => {
             if (state.pageMode !== 'home') {
                 state.pageMode = 'home'
             }
         },
-        clickLoginBtn: (state) => {
+        setLoginMode: (state) => {
             if(state.pageMode !== 'login') {
                 state.pageMode = 'login'
             }
@@ -26,8 +26,8 @@ const setPageModeSlice = createSlice({
     }
 })
 
-export const {clickSearchBtn, clickHomeBtn, clickLoginBtn} = setPageModeSlice.actions
+export const {setSearchMode, setHomeMode, setLoginMode} = pageModeSlice.actions
 
-export const SPM_Reducer = setPageModeSlice.reducer
+export const PM_Reducer = pageModeSlice.reducer
 
-export default setPageModeSlice
+export default pageModeSlice

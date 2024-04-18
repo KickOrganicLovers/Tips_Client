@@ -2,14 +2,14 @@ import React, {createContext, useCallback, useState} from "react";
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "../../redux/store";
-import {toggle} from "../../redux/setSideBarStatusSlice";
+import {toggle} from "../../redux/SideBarStatusSlice";
 import {AiOutlineMenu} from "react-icons/ai";
 
 
 const CategoryBtn: React.FC = () => {
 
-    const SSBS = useSelector<RootState, RootState['setSideBarStatus']>((state) => {
-        return state.setSideBarStatus
+    const SBS = useSelector<RootState, RootState['SideBarStatus']>((state) => {
+        return state.SideBarStatus
     })
     const dispatch = useDispatch<AppDispatch>()
 
@@ -23,7 +23,7 @@ const CategoryBtn: React.FC = () => {
     }
 
     return (
-        <S_AiOutlineMenu isActive={SSBS.isActive} onClick={clickEventHandler}/>
+        <S_AiOutlineMenu isActive={SBS.isActive} onClick={clickEventHandler}/>
     )
 }
 

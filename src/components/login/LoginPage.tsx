@@ -1,15 +1,64 @@
-import React from "react";
+import React, {Dispatch, useCallback, useEffect, useState} from "react";
 import styled from "styled-components";
+import {useDispatch, useSelector} from "react-redux";
+import {AppDispatch, RootState} from "../../redux/store";
+import {setIsLoggedIn,setUserName} from "../../redux/LoginStatusSlice";
+import {disable} from "../../redux/SideBarStatusSlice";
+import {useNavigate} from "react-router-dom";
+import {setHomeMode} from "../../redux/PageModeSlice";
 
 const LoginPage: React.FC = () => {
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const LS = useSelector<RootState, RootState['LoginStatus']>((state) => state.LoginStatus)
+    const dispatch = useDispatch<AppDispatch>()
+    const navigate = useNavigate()
+
+    //　AccountBanner内のlink先を将来的にLSによって変えるので、別になくてもいい
+
+    useEffect(() => {
+        if(LS.isLoggedIn){
+            navigate('/')
+            dispatch(setHomeMode())
+        }
+    })
+
+    const login = async () => {
+        const url = 'http://localhost:5000/login'
+        const params = {
+            method: 'POST',
+            headers:{'Content-Type': 'application/json'},
+            body: JSON.stringify({email: email, password: password})
+        }
+        try{
+            const res = await fetch(url, params)
+            const data = await res.json()
+
+            console.log(data)
+            return data
+
+        }catch (e){
+            throw e
+        }
+    }
+
+    const submitEventHandler = () => {
+        login().then((val) => {
+            dispatch(setIsLoggedIn(val.isLoggedIn))
+            dispatch(setUserName(val.loginStatus.username))
+        })
+    }
+
+
+
     return (<Wrapper>
         <S_img src={'./img/PageIcon.png'}/>
         <S_h1>Tipsにログイン</S_h1>
-        <S_form action={'http://localhost:5000/fuck'} method={'POST'}>
-            <S_input_text type={`email`} placeholder={'e-mail'}/>
-            <S_input_text type={'password'} placeholder={'password'}/>
-            <S_input_submit type={'submit'} value={'login'}/>
-        </S_form>
+        <S_div>
+            <S_input_text type={`email`} name={'email'} placeholder={'e-mail'} onChange={(e) => {setEmail(e.target.value)}}/>
+            <S_input_text type={'password'} name= {'password'} placeholder={'password'} onChange={(e) => {setPassword(e.target.value)}}/>
+            <S_button onClick={submitEventHandler}>Login</S_button>
+        </S_div>
     </Wrapper>)
 }
 
@@ -38,7 +87,7 @@ const S_h1 = styled.h1`
     margin: 0px;
     color: white`
 
-const S_form = styled.form`
+const S_div = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -67,7 +116,7 @@ const S_input_text = styled.input`
         outline: 2px solid lightgray;
     };`
 
-const S_input_submit = styled.input`
+const S_button = styled.button`
     width: 100px;
     height: 30px;
     padding: 0px;

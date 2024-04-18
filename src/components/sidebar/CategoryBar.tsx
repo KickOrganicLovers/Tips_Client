@@ -7,8 +7,8 @@ import AccountBanner from "./AccountBanner";
 import Category from "./Category";
 
 const CategoryBar: React.FC = () => {
-    const SSBS = useSelector<RootState, RootState['setSideBarStatus']>((state) => state.setSideBarStatus)
-    return (<Wrapper isActive={SSBS.isActive}>
+    const SBS = useSelector<RootState, RootState['SideBarStatus']>((state) => state.SideBarStatus)
+    return (<Wrapper isActive={SBS.isActive}>
         <AccountBanner/>
         <Category/>
         <S_ul>

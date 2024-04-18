@@ -4,16 +4,16 @@ import {AiOutlinePlusCircle} from "react-icons/ai";
 import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "../../redux/store";
 import {Link, useNavigate} from "react-router-dom";
-import {clickLoginBtn} from "../../redux/setPageModeSlice";
-import {disable, enable, toggle} from "../../redux/setSideBarStatusSlice";
+import {setLoginMode} from "../../redux/PageModeSlice";
+import {disable, enable, toggle} from "../../redux/SideBarStatusSlice";
 
 const AccountBanner: React.FC = () => {
-    const SLS = useSelector<RootState, RootState['setLoginStatus']>((state) => state.setLoginStatus)
+    const LS = useSelector<RootState, RootState['LoginStatus']>((state) => state.LoginStatus)
     const dispatch = useDispatch<AppDispatch>()
     const navigate = useNavigate()
 
     const launchDispatch  = useCallback(() => {
-        dispatch(clickLoginBtn())
+        dispatch(setLoginMode())
         dispatch(disable())
     }, [dispatch])
 
@@ -26,10 +26,10 @@ const AccountBanner: React.FC = () => {
     return (<Wrapper>
         <Upper_Wrapper>
             <Img_Wrapper><S_img src={'./img/SampleUserImage.png'}/></Img_Wrapper>
-            <UserName_Wrapper>{(() => SLS.isLoggedIn? SLS.username : <S_p_2 onClick={clickEventHandler}>Login</S_p_2>)()}</UserName_Wrapper>
+            <UserName_Wrapper>{(() => LS.isLoggedIn? LS.loginStatus.username : <S_p_2 onClick={clickEventHandler}>Login</S_p_2>)()}</UserName_Wrapper>
         </Upper_Wrapper>
-        <Lower_Wrapper>
-            <S_AiOutlinePlusCircle/>
+        <Lower_Wrapper >
+            <S_AiOutlinePlusCircle onClick={clickEventHandler}/>
             <S_p_1>記事を作成</S_p_1>
         </Lower_Wrapper>
     </Wrapper>)
