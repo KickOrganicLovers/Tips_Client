@@ -152,26 +152,28 @@ const SignupPage: React.FC = () => {
 
 
     return (<Wrapper>
-        <S_img src={'./img/PageIcon.png'}/>
-        <S_h1>Tipsに登録</S_h1>
         <S_div_0>
+            <S_img src={'./img/PageIcon.png'}/>
+            <S_h1>Tipsに登録</S_h1>
             <S_div_1>
-                <S_p>{(() => {return username.hasError? 'This username is already used' : undefined})()}</S_p>
-                <S_input_text placeholder={'username'} name={'username'} onChange={changeEventHandler_Username}/>
+                <S_div_2>
+                    <S_p>{(() => {return username.hasError? 'This username is already used' : undefined})()}</S_p>
+                    <S_input_text placeholder={'username'} name={'username'} onChange={changeEventHandler_Username}/>
+                </S_div_2>
+                <S_div_2>
+                    <S_p>{(() => {return email.hasError? 'This email is already used' : undefined})()}</S_p>
+                    <S_input_text placeholder={'email'} name={'email'} onChange={changeEventHandler_Email}/>
+                </S_div_2>
+                <S_div_2>
+                    <S_p>{(() => {return password.hasError? 'This password contains invalid charactors' : undefined})()}</S_p>
+                    <S_input_text placeholder={'password'} name={'password'} onChange={changeEventHandler_Password}/>
+                </S_div_2>
+                <S_div_2>
+                    <S_p>{(() => {return passConf.hasError? 'Passwords do not match' : undefined})()}</S_p>
+                    <S_input_text placeholder={'password_confirm'} name={'password_confirm'} onChange={changeEventHandler_PassConf}/>
+                </S_div_2>
+                <S_button onClick={clickEventHandler_signupBtn} isActive={signupBtn_isActive}>Signup</S_button>
             </S_div_1>
-            <S_div_1>
-                <S_p>{(() => {return email.hasError? 'This email is already used' : undefined})()}</S_p>
-                <S_input_text placeholder={'email'} name={'email'} onChange={changeEventHandler_Email}/>
-            </S_div_1>
-            <S_div_1>
-                <S_p>{(() => {return password.hasError? 'This password contains invalid charactors' : undefined})()}</S_p>
-                <S_input_text placeholder={'password'} name={'password'} onChange={changeEventHandler_Password}/>
-            </S_div_1>
-            <S_div_1>
-                <S_p>{(() => {return passConf.hasError? 'Passwords do not match' : undefined})()}</S_p>
-                <S_input_text placeholder={'password_confirm'} name={'password_confirm'} onChange={changeEventHandler_PassConf}/>
-            </S_div_1>
-            <S_button onClick={clickEventHandler_signupBtn} isActive={signupBtn_isActive}>Signup</S_button>
         </S_div_0>
     </Wrapper>)
 }
@@ -180,38 +182,53 @@ export default SignupPage
 
 const Wrapper = styled.div`
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 30px;
     width: 80%;
     height: 100%;
-    background-color: #424242;
+    background-image: url("/img/BackGround1.png");
+    background-size: cover;
     overflow-y: scroll;
     @media screen and (max-width: 1024px) {
         width: 100%;
     }`
 
+const S_div_0 = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    width: 30%;
+    min-width: 400px;
+    height: auto;
+    padding: 60px;
+    background-color: #424242;
+    opacity: 0.98;
+    border-radius: 40px;
+    
+`
+
 const S_img = styled.img`
     width: auto;
-    height: 10%;
-    min-height: 75px`
+    height: 100px;
+    min-height: 100px`
 
 const S_h1 = styled.h1`
     margin: 0px;
     color: white`
 
-const S_div_0 = styled.div`
+const S_div_1 = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 30%;
+    width: 100%;
     height: 30%;
     min-height:450px;
     gap: 20px`
 
-const S_div_1 = styled.div`
+const S_div_2 = styled.div`
     position: relative;
     width: 100%;
     height: 70px;

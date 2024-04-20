@@ -9,11 +9,12 @@ module.exports = {
     },
 
     module: {
-        rules: [{
-            test: /\.(js|ts|tsx)?$/,
-            use: 'ts-loader',
-            exclude: /node_modules/
-        }]
+        rules: [
+            {
+                test: /\.(js|ts|tsx)?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/
+            }]
     },
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.json']
