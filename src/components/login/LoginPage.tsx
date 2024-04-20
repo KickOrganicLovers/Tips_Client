@@ -2,9 +2,9 @@ import React, {Dispatch, useCallback, useEffect, useState} from "react";
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "../../redux/store";
-import {setIsLoggedIn,setUserName} from "../../redux/LoginStatusSlice";
+import {setErrorMessage, setIsLoggedIn, setUserName} from "../../redux/LoginStatusSlice";
 import {disable} from "../../redux/SideBarStatusSlice";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {setHomeMode} from "../../redux/PageModeSlice";
 
 const LoginPage: React.FC = () => {
@@ -46,6 +46,7 @@ const LoginPage: React.FC = () => {
         login().then((val) => {
             dispatch(setIsLoggedIn(val.isLoggedIn))
             dispatch(setUserName(val.loginStatus.username))
+            dispatch(setErrorMessage(val.loginStatus.error))
         })
     }
 
@@ -59,6 +60,8 @@ const LoginPage: React.FC = () => {
             <S_input_text type={'password'} name= {'password'} placeholder={'password'} onChange={(e) => {setPassword(e.target.value)}}/>
             <S_button onClick={submitEventHandler}>Login</S_button>
         </S_div>
+        <S_h2>{LS.loginStatus.error}</S_h2>
+        <S_Link to={'/signup'}>新規登録</S_Link>
     </Wrapper>)
 }
 
@@ -128,3 +131,12 @@ const S_button = styled.button`
     &:hover{
         color: white;
     }`
+
+
+const S_h2 = styled.h2`
+    color: red;
+    font-size: 20px`
+
+const S_Link = styled(Link)`
+    color: white;
+`

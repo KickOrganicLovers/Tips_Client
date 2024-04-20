@@ -6,8 +6,8 @@ const loginStatusSlice = createSlice({
     initialState: {
         isLoggedIn: false,
         loginStatus: {
-            error: '',
-            username: ''
+            error: undefined,
+            username: undefined
         }
     },
     reducers: {
@@ -16,11 +16,14 @@ const loginStatusSlice = createSlice({
         },
         setUserName: (state, action) => {
             state.loginStatus.username = action.payload
+        },
+        setErrorMessage: (state, action) => {
+            state.loginStatus.error = action.payload
         }
     }
 })
 
-export  const {setIsLoggedIn, setUserName} = loginStatusSlice.actions
+export  const {setIsLoggedIn, setUserName, setErrorMessage} = loginStatusSlice.actions
 
 export const LS_Reducer = loginStatusSlice.reducer
 

@@ -7,6 +7,7 @@ import CategoryBar from "./sidebar/CategoryBar";
 import {Route, Routes} from "react-router-dom";
 import SearchPage from "./search/SearchPage";
 import LoginPage from "./login/LoginPage";
+import SignupPage from "./signup/SignupPage";
 
 const Main: React.FC = () => {
     const SBS = useSelector<RootState, RootState['SideBarStatus']>((state) => {
@@ -20,6 +21,7 @@ const Main: React.FC = () => {
                 <Route path={'/'} element={<ArticlePage/>}/>
                 <Route path={'/search'} element={<SearchPage/>}/>
                 <Route path={'/login'} element={<LoginPage/>}/>
+                <Route path={'/signup'} element={<SignupPage/>}/>
             </Routes>
             <CategoryBar/>
         </Wrapper>

@@ -17,3 +17,14 @@ export interface LoginScheme {
         username: string
     }
 }
+
+export interface UserScheme{
+    username?: string
+    email?: string
+    password?: string
+}
+
+export interface SignupPageState{
+    hasError?: boolean,
+    contents?: string
+}
