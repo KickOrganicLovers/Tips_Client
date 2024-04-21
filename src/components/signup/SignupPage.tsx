@@ -186,7 +186,7 @@ const Wrapper = styled.div`
     justify-content: center;
     width: 80%;
     height: 100%;
-    background-image: url("/img/BackGround1.png");
+    background-image: url("/img/BackGround3.png");
     background-size: cover;
     overflow-y: scroll;
     @media screen and (max-width: 1024px) {

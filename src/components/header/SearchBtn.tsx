@@ -31,7 +31,8 @@ const SearchBtn: React.FC = () => {
 export default SearchBtn
 
 const S_AiOutlineSearch = styled(AiOutlineSearch)<{ pageMode: string }>`
-    font-size: 25px;
+    width: auto;
+    height: 3vh;
     color: ${(props) => {
         return props.pageMode === 'search' ? 'white' : 'darkgrey'
     }}`

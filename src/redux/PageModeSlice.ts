@@ -22,11 +22,21 @@ const pageModeSlice = createSlice({
             if(state.pageMode !== 'login') {
                 state.pageMode = 'login'
             }
+        },
+        setSignupMode: (state) => {
+            if(state.pageMode != 'signup'){
+                state.pageMode = 'signup'
+            }
+        },
+        setCreateArticleMode: (state) => {
+            if(state.pageMode != 'createArticle'){
+                state.pageMode = 'createArticle'
+            }
         }
     }
 })
 
-export const {setSearchMode, setHomeMode, setLoginMode} = pageModeSlice.actions
+export const {setSearchMode, setHomeMode, setLoginMode, setSignupMode, setCreateArticleMode} = pageModeSlice.actions
 
 export const PM_Reducer = pageModeSlice.reducer
 

@@ -70,7 +70,7 @@ const LoginPage: React.FC = () => {
 export default LoginPage
 
 const Wrapper = styled.div`
-    background-image: url("/img/BackGround0.png");
+    background-image: url("/img/BackGround2.png");
     background-size: cover;
     display: flex;
     align-items: center;
@@ -85,23 +85,25 @@ const Wrapper = styled.div`
 
 const S_div_0 = styled.div`
     height: auto;
-    width: 30%;
-    min-width: 400px;
+    width: 300pt;
     padding: 60px;
     background-color: #424242;
     opacity: 0.98;
-    border-radius: 40px;
+    border-radius: 4vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 30px;
+    gap: 3vh;
+    @media screen and (max-width: 1024px) {
+        width: 70vw;
+    }
+    
 `
 
 const S_img = styled.img`
     width: auto;
-    height: 100px;
-    min-height: 100px`
+    height: 10vh;`
 
 const S_h1 = styled.h1`
     margin: 0px;
@@ -114,21 +116,23 @@ const S_div_1 = styled.div`
     align-items: center;
     width: 100%;
     height: auto;
-    min-height: 250px;
-    gap: 20px`
+    min-height: 25vh;
+    gap: 2vh`
 
 
 const S_input_text = styled.input`
-    height: 50px;
-    min-height: 50px;
+    height: 5vh;
     width: 100%;
-    padding: 0px 0px 0px 20px;
-    font-size: 18px;
-    border-radius: 20px;
+    padding: 0px 0px 0px 2vw;
+    font-size: 2vh;
+    border-radius: 10vh;
     box-sizing: border-box;
     background-color: dimgray;
     color: white;
     border: none;
+    @media screen and (max-width: 1024px) {
+        padding: 0px 0px 0px 4vw;
+    }
     ::placeholder{
         color: red;
     }
@@ -137,14 +141,15 @@ const S_input_text = styled.input`
     };`
 
 const S_button = styled.button`
-    width: 100px;
-    height: 30px;
+    width: 20%;
+    height: 4vh;
     padding: 0px;
     border: none;
     box-sizing: border-box;
-    border-radius: 10px;
+    border-radius: 2vw;
     background-color: dimgray;
     color: lightgray;
+    font-size: 1.5vh;
     &:hover{
         color: white;
     }`
@@ -152,7 +157,7 @@ const S_button = styled.button`
 
 const S_h2 = styled.h2`
     color: red;
-    font-size: 20px`
+    font-size: 1.5vh`
 
 const S_Link = styled(Link)`
     color: white;

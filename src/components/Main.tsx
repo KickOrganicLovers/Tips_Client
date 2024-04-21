@@ -8,6 +8,7 @@ import {Route, Routes} from "react-router-dom";
 import SearchPage from "./search/SearchPage";
 import LoginPage from "./login/LoginPage";
 import SignupPage from "./signup/SignupPage";
+import CreateArticlePage from "./insert_article/CreateArticlePage";
 
 const Main: React.FC = () => {
     const SBS = useSelector<RootState, RootState['SideBarStatus']>((state) => {
@@ -22,6 +23,7 @@ const Main: React.FC = () => {
                 <Route path={'/search'} element={<SearchPage/>}/>
                 <Route path={'/login'} element={<LoginPage/>}/>
                 <Route path={'/signup'} element={<SignupPage/>}/>
+                <Route path={'/create_article'} element={<CreateArticlePage/>}/>
             </Routes>
             <CategoryBar/>
         </Wrapper>

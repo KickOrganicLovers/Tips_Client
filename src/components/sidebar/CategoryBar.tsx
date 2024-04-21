@@ -35,7 +35,7 @@ const Wrapper = styled.div<{ isActive: boolean }>`
         height: 92vh;
         width: ${(props) => {
             console.log(props.isActive)
-            return props.isActive ? '200px' : '0px'
+            return props.isActive ? '40vw' : '0px'
         }};
         transition: width 0.5s;
         position: absolute;

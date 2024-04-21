@@ -36,17 +36,20 @@ const S_div = styled.div<{ isActive: boolean }>`
     background-color: ${(props) => {
         return props.isActive ? '#3b3b3b' : '#2d2d2d'
     }};
-    height: 40px;
+    height: 4vh;
 
     &:hover {
         background-color: #484848;
     }`
 
 const S_p_0 = styled.p`
-    margin: 0px 0px 0px 12px;
+    padding: 0px 0px 0px 1vw;
+    margin: 0px;
     height: 100%;
-    line-height: 40px;
-    color: white`
+    line-height: 4vh;
+    font-size: 1.5vh;
+    color: white;
+    white-space: nowrap`
 
 const S_ul = styled.ul<{ isActive: boolean, detail_length: number }>`
     margin: 0px;
@@ -54,14 +57,14 @@ const S_ul = styled.ul<{ isActive: boolean, detail_length: number }>`
     display: flex;
     flex-direction: column;
     height: ${(props) => {
-        return props.isActive ? (props.detail_length * 40) + 'px' : '0px'
+        return props.isActive ? (props.detail_length * 4) + 'vh' : '0px'
     }};
     transition: height 0.5s ease-out;
     overflow: hidden;
 `
 
 const S_li = styled.li`
-    height: 40px;
+    height: 4vh;
     list-style: none;
     background-color: #424242;
 
@@ -70,10 +73,13 @@ const S_li = styled.li`
     }`
 
 const S_p_1 = styled.p`
-    margin: 0px 0px 0px 14px;
-    line-height: 40px;
+    padding: 0px 0px 0px 1vw;
+    margin: 0px;
     height: 100%;
-    color: white`
+    line-height: 4vh;
+    font-size: 1.5vh;
+    color: white;
+    white-space: nowrap`
 
 
 export default CategoryList

@@ -31,6 +31,8 @@ export default CategoryBtn
 
 
 const S_AiOutlineMenu = styled(AiOutlineMenu)<{ isActive: boolean }>`
+    width: auto;
+    height: 3vh;
     color: ${(props) => {
         return props.isActive ? 'white' : 'darkgrey'
     }};

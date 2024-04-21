@@ -32,7 +32,8 @@ const HomeBtn: React.FC = () => {
 export default HomeBtn
 
 const S_AiOutlineHome = styled(AiOutlineHome)<{ pageMode: string }>`
-    font-size: 25px;
+    width: auto;
+    height: 3vh;
     color: ${(props) => {
         return props.pageMode === 'home' ? 'white' : 'darkgrey'
     }}`

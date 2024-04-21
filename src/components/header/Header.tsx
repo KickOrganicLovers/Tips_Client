@@ -53,27 +53,24 @@ const S_img_2 = styled.img`
 const S_ul = styled.ul`
     display: flex;
     justify-content: flex-end;
-    gap: 30px;
+    gap: 3vw;
     align-items: center;
     width: 20%;
-    min-width: 200px;
+    min-width: 15vw;
     height: 100%;
-    margin: 0px 20px 0px 0px;
+    margin: 0px 3vw 0px 0px;
     padding: 4px 0px 0px 0px;
 `
 
 const S_li_0 = styled.li`
-    width: auto;
     list-style: none;
     font-family: 'Poppins', sans-serif;
 `
 const S_li_1 = styled.li`
-    width: auto;
     list-style: none;
     font-family: 'Poppins', sans-serif;
 `
 const S_li_2 = styled.li`
-    width: auto;
     list-style: none;
     display: none;
     @media screen and (max-width: 1024px) {

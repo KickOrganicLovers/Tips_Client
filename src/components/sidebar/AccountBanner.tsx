@@ -4,7 +4,7 @@ import {AiOutlinePlusCircle} from "react-icons/ai";
 import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "../../redux/store";
 import {Link, useNavigate} from "react-router-dom";
-import {setLoginMode} from "../../redux/PageModeSlice";
+import {setCreateArticleMode, setLoginMode, setSignupMode} from "../../redux/PageModeSlice";
 import {disable, enable, toggle} from "../../redux/SideBarStatusSlice";
 
 const AccountBanner: React.FC = () => {
@@ -12,25 +12,54 @@ const AccountBanner: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>()
     const navigate = useNavigate()
 
-    const launchDispatch  = useCallback(() => {
+    const launchDispatch_login  = useCallback(() => {
         dispatch(setLoginMode())
         dispatch(disable())
     }, [dispatch])
 
+    const launchDispatch_signup  = useCallback(() => {
+        dispatch(setSignupMode())
+        dispatch(disable())
+    }, [dispatch])
 
-    const clickEventHandler = () => {
+    const launchDispatch_createArticle = useCallback(() => {
+        dispatch(setCreateArticleMode())
+        dispatch(disable())
+    }, [dispatch])
+
+
+    const clickEventHandler_navigateToLogin = () => {
         navigate('/login')
-        launchDispatch()
+        launchDispatch_login()
+    }
+
+    const clickEventHandler_navigateToSignup = () => {
+        navigate('/signup')
+        launchDispatch_signup()
+    }
+
+    const clickEventHandler_navigateToCreateArticle = () => {
+        navigate('/create_article')
+        launchDispatch_createArticle()
     }
 
     return (<Wrapper>
         <Upper_Wrapper>
             <Img_Wrapper><S_img src={'./img/SampleUserImage.png'}/></Img_Wrapper>
-            <UserName_Wrapper>{(() => LS.isLoggedIn? LS.loginStatus.username : <S_p_2 onClick={clickEventHandler}>Login</S_p_2>)()}</UserName_Wrapper>
+            <UserName_Wrapper>{(() => LS.isLoggedIn? <S_p_2>Lychee</S_p_2> : <S_p_2 onClick={clickEventHandler_navigateToLogin}>Login</S_p_2>)()}</UserName_Wrapper>
         </Upper_Wrapper>
         <Lower_Wrapper >
-            <S_AiOutlinePlusCircle onClick={clickEventHandler}/>
-            <S_p_1>記事を作成</S_p_1>
+            {(() => LS.isLoggedIn? (
+                <S_div>
+                    <S_AiOutlinePlusCircle onClick={clickEventHandler_navigateToCreateArticle}/>
+                    <S_p_1>記事を作成</S_p_1>
+                </S_div>
+            ) : (
+                <S_div>
+                    <S_AiOutlinePlusCircle onClick={clickEventHandler_navigateToSignup}/>
+                    <S_p_1>アカウントを作成</S_p_1>
+                </S_div>
+            ))()}
         </Lower_Wrapper>
     </Wrapper>)
 }
@@ -39,36 +68,36 @@ export default AccountBanner
 
 const Wrapper = styled.div`
     width: 100%;
-    height: 70px;
+    height: 8vh;
+    background-image: url("/img/BackGround_LowerWrapper.png");
+    background-size: 100% 100%;
     box-sizing: border-box;`
 
 const Upper_Wrapper = styled.div`
     position: relative;
     width: 100%;
-    height: 40px;
-    background-color: #383838;`
+    height: 5vh;`
 
 const Lower_Wrapper = styled.div`
-    position: relative;
-    background-color: lightgray;
     width: 100%;
-    height: 30px;
-    font-size: 15px;
-    color: #2d2d2d;
+    height: 3vh;
     padding: 0px`
+
 
 const Img_Wrapper = styled.div`
     position: absolute;
+    background-color: darkgrey;
     top: 0px;
     left: 0px;
-    background-color: darkgrey;
-    width: 40px;
-    height: 40px`
+    width: 5vh;
+    height: 5vh;`
 
 const UserName_Wrapper = styled.div`
     position: absolute;
-    top: 6px;
-    left: 50px;
+    top:0px;
+    left: 6vh;
+    width: auto;
+    height: 100%;
     color: white;
     white-space: nowrap;`
 
@@ -76,30 +105,46 @@ const S_img = styled.img`
     width: 100%;
     height: 100%;`
 
+const S_div = styled.div`
+    position: relative;
+    width: 100%;
+    height: 100%;
+`
+
 const S_p_1 = styled.p`
     position: absolute;
-    top: 4px;
-    left: 30px;
-    font-size: 15px;
-    color: #3b3b3b;
+    top: 0px;
+    left: 3vh;
+    height: 100%;
+    width: auto;
+    line-height: 3vh;
+    font-size: 1.5vh;
+    color: white;
     margin: 0px;
+    padding: 0px;
     white-space: nowrap;`
 
 const S_AiOutlinePlusCircle = styled(AiOutlinePlusCircle)`
     position: absolute;
-    top: 8px;
-    left: 10px;
-    font-size: 15px;
-    color: #3b3b3b;
+    top: 0.45vh;
+    left: 0px;
+    color: white;
+    height: 75%;
+    width: auto;
+    font-size: 1.5vh;
 
     &:hover {
         color: #2c8a8a;
     }`
 
 const S_p_2 = styled.p`
+    height: 100%;
+    width: auto;
+    line-height: 5vh;
+    font-size: 2vh;
     padding: 0px;
     margin: 0px;
-    color: lightgray;
+    color: white;
     &:hover{
-        color: white;
+        color: #2c8a8a;
     }`
