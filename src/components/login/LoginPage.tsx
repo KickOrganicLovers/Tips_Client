@@ -86,17 +86,21 @@ const Wrapper = styled.div`
 const S_div_0 = styled.div`
     height: auto;
     width: 300pt;
-    padding: 60px;
+    padding: 40px;
     background-color: #424242;
     opacity: 0.98;
-    border-radius: 4vh;
+    border-radius: 6vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 3vh;
     @media screen and (max-width: 1024px) {
+        width: 50vw;
+    }
+    @media screen and (max-width: 512px){
         width: 70vw;
+        
     }
     
 `
