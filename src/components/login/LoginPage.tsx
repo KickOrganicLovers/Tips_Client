@@ -5,7 +5,7 @@ import {AppDispatch, RootState} from "../../redux/store";
 import {setErrorMessage, setIsLoggedIn, setUserName} from "../../redux/LoginStatusSlice";
 import {disable} from "../../redux/SideBarStatusSlice";
 import {Link, useNavigate} from "react-router-dom";
-import {setHomeMode} from "../../redux/PageModeSlice";
+import {setPageMode} from "../../redux/PageModeSlice";
 
 const LoginPage: React.FC = () => {
     const [email, setEmail] = useState('')
@@ -19,7 +19,9 @@ const LoginPage: React.FC = () => {
     useEffect(() => {
         if(LS.isLoggedIn){
             navigate('/')
-            dispatch(setHomeMode())
+            dispatch(setPageMode('home'))
+        }else {
+            dispatch(setPageMode('login'))
         }
     })
 
@@ -85,7 +87,7 @@ const Wrapper = styled.div`
 
 const S_div_0 = styled.div`
     height: auto;
-    width: 300pt;
+    width: 500px;
     padding: 40px;
     background-color: #424242;
     opacity: 0.98;
@@ -110,6 +112,7 @@ const S_img = styled.img`
     height: 10vh;`
 
 const S_h1 = styled.h1`
+    font-size: 4vh;
     margin: 0px;
     color: white`
 
@@ -127,7 +130,7 @@ const S_div_1 = styled.div`
 const S_input_text = styled.input`
     height: 5vh;
     width: 100%;
-    padding: 0px 0px 0px 2vw;
+    padding: 0px 0px 0px 1vw;
     font-size: 2vh;
     border-radius: 10vh;
     box-sizing: border-box;
@@ -135,6 +138,9 @@ const S_input_text = styled.input`
     color: white;
     border: none;
     @media screen and (max-width: 1024px) {
+        padding: 0px 0px 0px 3vw;
+    }
+    @media screen and (max-width: 512px){
         padding: 0px 0px 0px 4vw;
     }
     ::placeholder{

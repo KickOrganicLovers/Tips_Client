@@ -4,7 +4,6 @@ import {AiOutlinePlusCircle} from "react-icons/ai";
 import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "../../redux/store";
 import {Link, useNavigate} from "react-router-dom";
-import {setCreateArticleMode, setLoginMode, setSignupMode} from "../../redux/PageModeSlice";
 import {disable, enable, toggle} from "../../redux/SideBarStatusSlice";
 
 const AccountBanner: React.FC = () => {
@@ -12,35 +11,21 @@ const AccountBanner: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>()
     const navigate = useNavigate()
 
-    const launchDispatch_login  = useCallback(() => {
-        dispatch(setLoginMode())
-        dispatch(disable())
-    }, [dispatch])
-
-    const launchDispatch_signup  = useCallback(() => {
-        dispatch(setSignupMode())
-        dispatch(disable())
-    }, [dispatch])
-
-    const launchDispatch_createArticle = useCallback(() => {
-        dispatch(setCreateArticleMode())
-        dispatch(disable())
-    }, [dispatch])
 
 
     const clickEventHandler_navigateToLogin = () => {
         navigate('/login')
-        launchDispatch_login()
+        dispatch(disable())
     }
 
     const clickEventHandler_navigateToSignup = () => {
         navigate('/signup')
-        launchDispatch_signup()
+        dispatch(disable())
     }
 
     const clickEventHandler_navigateToCreateArticle = () => {
         navigate('/create_article')
-        launchDispatch_createArticle()
+        dispatch(disable())
     }
 
     return (<Wrapper>
@@ -126,8 +111,8 @@ const S_p_1 = styled.p`
 
 const S_AiOutlinePlusCircle = styled(AiOutlinePlusCircle)`
     position: absolute;
-    top: 0.45vh;
-    left: 0px;
+    top: 0.42vh;
+    left: 0.4vh;
     color: white;
     height: 75%;
     width: auto;

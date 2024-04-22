@@ -2,9 +2,14 @@ import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import {SignupPageState, UserScheme} from "../../typs";
 import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {AppDispatch} from "../../redux/store";
+import {setPageMode} from "../../redux/PageModeSlice";
 
 
 const SignupPage: React.FC = () => {
+
+    const dispatch = useDispatch<AppDispatch>()
 
     const navigate = useNavigate()
 
@@ -137,6 +142,7 @@ const SignupPage: React.FC = () => {
     }
 
     useEffect(() => {
+        dispatch(setPageMode('signup'))
         if(!signupBtn_isActive){
             if(!username.hasError && !email.hasError && !password.hasError && !passConf.hasError){
                 if(username.contents !== undefined && email.contents !== undefined && password.contents !== undefined && passConf.contents !== undefined){
@@ -194,28 +200,35 @@ const Wrapper = styled.div`
     }`
 
 const S_div_0 = styled.div`
+    height: auto;
+    width: 500px;
+    padding: 40px;
+    background-color: #424242;
+    opacity: 0.98;
+    border-radius: 6vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 30px;
-    width: 30%;
-    min-width: 400px;
-    height: auto;
-    padding: 60px;
-    background-color: #424242;
-    opacity: 0.98;
-    border-radius: 40px;
-    
+    gap: 3vh;
+    @media screen and (max-width: 1024px) {
+        width: 50vw;
+    }
+    @media screen and (max-width: 512px){
+        width: 70vw;
+
+    }
+
+
 `
 
 const S_img = styled.img`
     width: auto;
-    height: 100px;
-    min-height: 100px`
+    height: 10vh`
 
 const S_h1 = styled.h1`
     margin: 0px;
+    font-size: 4vh;
     color: white`
 
 const S_div_1 = styled.div`
@@ -224,32 +237,32 @@ const S_div_1 = styled.div`
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 30%;
-    min-height:450px;
-    gap: 20px`
+    height: auto;
+    min-height:35vh;
+    gap: 2vh`
 
 const S_div_2 = styled.div`
     position: relative;
     width: 100%;
-    height: 70px;
-    min-height: 70px;
 `
 
 
 const S_input_text = styled.input`
-    position: absolute;
-    top: 20px;
-    left: 0px;
-    height: 50px;
-    min-height: 50px;
+    height: 5vh;
     width: 100%;
-    padding: 0px 0px 0px 20px;
-    font-size: 18px;
-    border-radius: 20px;
+    padding: 0px 0px 0px 1vw;
+    font-size: 2vh;
+    border-radius: 10vh;
     box-sizing: border-box;
     background-color: dimgray;
     color: white;
     border: none;
+    @media screen and (max-width: 1024px) {
+        padding: 0px 0px 0px 2vw;
+    }
+    @media screen and (max-width: 512px){
+        padding: 0px 0px 0px 4vw;
+    }
     ::placeholder{
         color: red;
     }
@@ -258,15 +271,15 @@ const S_input_text = styled.input`
     };`
 
 const S_button = styled.button<{isActive: boolean}>`
-    width: 100px;
-    height: 30px;
+    width: 20%;
+    height: 4vh;
     padding: 0px;
-    margin: 20px 0px 0px 0px;
     border: none;
     box-sizing: border-box;
-    border-radius: 10px;
+    border-radius: 2vw;
     background-color: ${(props) => props.isActive ? 'lightblue': 'dimgray'};
     color: lightgray;
+    font-size: 1.5vh;
     &:hover{
         color: white;
     }`
@@ -274,11 +287,11 @@ const S_button = styled.button<{isActive: boolean}>`
 
 const S_h2 = styled.h2`
     color: red;
-    font-size: 20px`
+    font-size: 1.5vh`
 
 
 const S_p = styled.p`
     margin: 0px;
     padding: 0px;
     color: red;
-    font-size: 15px`
+    font-size: 1.5vh`

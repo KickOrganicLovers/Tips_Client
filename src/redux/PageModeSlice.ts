@@ -8,35 +8,14 @@ const pageModeSlice = createSlice({
         pageMode: 'home'
     },
     reducers: {
-        setSearchMode: (state) => {
-            if (state.pageMode !== 'search') {
-                state.pageMode = 'search'
-            }
-        },
-        setHomeMode: (state) => {
-            if (state.pageMode !== 'home') {
-                state.pageMode = 'home'
-            }
-        },
-        setLoginMode: (state) => {
-            if(state.pageMode !== 'login') {
-                state.pageMode = 'login'
-            }
-        },
-        setSignupMode: (state) => {
-            if(state.pageMode != 'signup'){
-                state.pageMode = 'signup'
-            }
-        },
-        setCreateArticleMode: (state) => {
-            if(state.pageMode != 'createArticle'){
-                state.pageMode = 'createArticle'
-            }
+        setPageMode: (state, action) => {
+            if(state.pageMode !== action.payload)
+                state.pageMode = action.payload
         }
     }
 })
 
-export const {setSearchMode, setHomeMode, setLoginMode, setSignupMode, setCreateArticleMode} = pageModeSlice.actions
+export const {setPageMode} = pageModeSlice.actions
 
 export const PM_Reducer = pageModeSlice.reducer
 

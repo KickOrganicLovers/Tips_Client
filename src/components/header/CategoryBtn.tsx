@@ -14,12 +14,8 @@ const CategoryBtn: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>()
 
 
-    const launchDispatch = useCallback(() => {
-        dispatch(toggle())
-    }, [dispatch])
-
     const clickEventHandler = () => {
-        launchDispatch()
+        dispatch(toggle())
     }
 
     return (

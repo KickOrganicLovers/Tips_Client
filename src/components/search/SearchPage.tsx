@@ -1,7 +1,15 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styled from "styled-components";
+import {useDispatch} from "react-redux";
+import {AppDispatch} from "../../redux/store";
+import {setPageMode} from "../../redux/PageModeSlice";
 
 const SearchPage: React.FC = () => {
+    const dispatch = useDispatch<AppDispatch>()
+
+    useEffect(() => {
+        dispatch(setPageMode('search'))
+    })
     return (<Wrapper>
 
     </Wrapper>)

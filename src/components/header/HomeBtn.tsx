@@ -3,7 +3,6 @@ import {AiOutlineHome} from "react-icons/ai";
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "../../redux/store";
-import {setHomeMode} from "../../redux/PageModeSlice";
 import {useNavigate} from "react-router-dom";
 
 const HomeBtn: React.FC = () => {
@@ -17,12 +16,7 @@ const HomeBtn: React.FC = () => {
 
     const clickEventHandler = () => {
         navigate('/')
-        launchDispatch()
     }
-
-    const launchDispatch = useCallback(() => {
-        dispatch(setHomeMode())
-    }, [dispatch])
 
     return (
         <S_AiOutlineHome pageMode={PM.pageMode} onClick={clickEventHandler}/>

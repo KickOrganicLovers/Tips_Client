@@ -3,7 +3,6 @@ import {AiOutlineSearch} from "react-icons/ai";
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "../../redux/store";
-import {setHomeMode, setSearchMode} from "../../redux/PageModeSlice";
 import {useNavigate} from "react-router-dom";
 
 const SearchBtn: React.FC = () => {
@@ -15,12 +14,7 @@ const SearchBtn: React.FC = () => {
 
     const clickEventHandler = () => {
         navigate('/search')
-        launchDispatch()
     }
-
-    const launchDispatch = useCallback(() => {
-        dispatch(setSearchMode())
-    }, [dispatch])
 
     return (
         <S_AiOutlineSearch onClick={clickEventHandler} pageMode={SPM.pageMode}/>

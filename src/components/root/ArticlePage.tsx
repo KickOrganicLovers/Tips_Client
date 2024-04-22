@@ -2,12 +2,17 @@ import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import ArticleContainer from "./ArticleContainer";
 import {ArticleScheme} from "../../typs";
+import {useDispatch} from "react-redux";
+import {AppDispatch} from "../../redux/store";
+import {setPageMode} from "../../redux/PageModeSlice";
 
 
 const ArticlePage: React.FC = () => {
     const [articleArr, setArticleArray] = useState<ArticleScheme[]>([])
+    const dispatch = useDispatch<AppDispatch>()
 
     useEffect(() => {
+        dispatch(setPageMode('home'))
         fetchData().then((val) => {
             if (val !== undefined) {
                 setArticleArray(val)
