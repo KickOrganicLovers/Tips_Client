@@ -164,19 +164,19 @@ const SignupPage: React.FC = () => {
             <S_div_1>
                 <S_div_2>
                     <S_p>{(() => {return username.hasError? 'This username is already used' : undefined})()}</S_p>
-                    <S_input_text placeholder={'username'} name={'username'} onChange={changeEventHandler_Username}/>
+                    <S_input_text type={'text'} placeholder={'username'} name={'username'} onChange={changeEventHandler_Username}/>
                 </S_div_2>
                 <S_div_2>
                     <S_p>{(() => {return email.hasError? 'This email is already used' : undefined})()}</S_p>
-                    <S_input_text placeholder={'email'} name={'email'} onChange={changeEventHandler_Email}/>
+                    <S_input_text type={'email'} placeholder={'email'} name={'email'} onChange={changeEventHandler_Email}/>
                 </S_div_2>
                 <S_div_2>
                     <S_p>{(() => {return password.hasError? 'This password contains invalid charactors' : undefined})()}</S_p>
-                    <S_input_text placeholder={'password'} name={'password'} onChange={changeEventHandler_Password}/>
+                    <S_input_text type={'password'} placeholder={'password'} name={'password'} onChange={changeEventHandler_Password}/>
                 </S_div_2>
                 <S_div_2>
                     <S_p>{(() => {return passConf.hasError? 'Passwords do not match' : undefined})()}</S_p>
-                    <S_input_text placeholder={'password_confirm'} name={'password_confirm'} onChange={changeEventHandler_PassConf}/>
+                    <S_input_text type={'password'} placeholder={'password_confirm'} name={'password_confirm'} onChange={changeEventHandler_PassConf}/>
                 </S_div_2>
                 <S_button onClick={clickEventHandler_signupBtn} isActive={signupBtn_isActive}>Signup</S_button>
             </S_div_1>
