@@ -28,10 +28,15 @@ const AccountBanner: React.FC = () => {
         dispatch(disable())
     }
 
+    const clickEventHandler_navigateToUserProfile = () => {
+        navigate('/user_profile')
+        dispatch(disable())
+    }
+
     return (<Wrapper>
         <Upper_Wrapper>
             <Img_Wrapper><S_img src={'./img/SampleUserImage.png'}/></Img_Wrapper>
-            <UserName_Wrapper>{(() => LS.isLoggedIn? <S_p_2>Lychee</S_p_2> : <S_p_2 onClick={clickEventHandler_navigateToLogin}>Login</S_p_2>)()}</UserName_Wrapper>
+            <UserName_Wrapper>{(() => LS.isLoggedIn? <S_p_2 onClick={clickEventHandler_navigateToUserProfile}>Lychee</S_p_2> : <S_p_2 onClick={clickEventHandler_navigateToLogin}>Login</S_p_2>)()}</UserName_Wrapper>
         </Upper_Wrapper>
         <Lower_Wrapper >
             {(() => LS.isLoggedIn? (
@@ -119,7 +124,7 @@ const S_AiOutlinePlusCircle = styled(AiOutlinePlusCircle)`
     font-size: 1.5vh;
 
     &:hover {
-        color: #2c8a8a;
+        color: cyan;
     }`
 
 const S_p_2 = styled.p`
@@ -131,5 +136,5 @@ const S_p_2 = styled.p`
     margin: 0px;
     color: white;
     &:hover{
-        color: #2c8a8a;
+        color: cyan;
     }`
