@@ -5,6 +5,7 @@ import {AppDispatch, RootState} from "../../redux/store";
 import {setPageMode} from "../../redux/PageModeSlice";
 import {Link} from "react-router-dom";
 import {AiFillPlusCircle, AiOutlineCheck, AiOutlineClose, AiOutlineEdit} from "react-icons/ai";
+import Cropper from "react-easy-crop";
 
 const UserProfilePage: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>()
@@ -19,17 +20,35 @@ const UserProfilePage: React.FC = () => {
 
     const [username, setUsername] = useState('lychee')
     const [introduction, setIntroduction] = useState('')
-    const [profileImg, setProfileImg] = useState()
-
+    const [isCropperOpen, setCropperMode] = useState(false)
+    const [img, setImg] = useState<string>()
+    const [crop, setCrop] = useState({x: 0, y: 0})
+    const [zoom, setZoom] = useState(1)
     const inputImgRef = useRef<HTMLInputElement>(null)
 
     const toggle = () => {
         setMode(!isEditMode)
     }
 
+    const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if(e.target.files && e.target.files.length > 0) {
+            const reader = new FileReader()
+            reader.onloadend = () => {
+                if(reader.result){
+                    setImg(reader.result.toString())
+                    setCropperMode(true)
+                }
+            }
+            reader.readAsDataURL(e.target.files[0])
+        }
+    }
+
 
     useEffect(() => {
         dispatch(setPageMode('user_profile'))
+        if(isCropperOpen){
+            console.log('fuckyou chinpo')
+        }
     })
 
 
@@ -54,8 +73,9 @@ const UserProfilePage: React.FC = () => {
                 <IconWrapper>
                     {(() => isEditMode? <S_div_4><S_AiOutlineCheck onClick={toggle}/><S_AiOutlineClose onClick={toggle}/></S_div_4>: <S_AiOutlineEdit onClick={toggle}/> )()}
                 </IconWrapper>
-                <S_input_img type={'file'} accept={'image/*'} ref={inputImgRef}/>
+                <S_input_img type={'file'} accept={'image/*'} ref={inputImgRef} onChange={onFileChange}/>
             </S_div_0>
+            {isCropperOpen? (<Cropper onCropChange={setCrop} crop={crop} aspect={3/4} zoom={zoom} onZoomChange={setZoom} image={img}/>) : undefined}
             <S_div_1></S_div_1>
         </Wrapper>
     )
@@ -233,4 +253,8 @@ const S_AiOutlineClose = styled(AiOutlineClose)`
 
 const S_input_img = styled.input`
     display: none;
+`
+
+const CropperContainer = styled.div<{isCropperOpen: boolean}>`
+    display: ${(props) => props.isCropperOpen ? '' : 'none'};
 `
