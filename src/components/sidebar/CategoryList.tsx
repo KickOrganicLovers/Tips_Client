@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import styled from "styled-components";
-import {CategoryScheme} from "../../typs";
+import {CategoryScheme} from "../../types";
 
 const CategoryList: React.FC<CategoryScheme> = (props: CategoryScheme) => {
     const [isActive, setIsActive] = useState(false)

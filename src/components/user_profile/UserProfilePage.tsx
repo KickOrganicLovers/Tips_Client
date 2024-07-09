@@ -6,6 +6,7 @@ import {setPageMode} from "../../redux/PageModeSlice";
 import {Link} from "react-router-dom";
 import {AiFillPlusCircle, AiOutlineCheck, AiOutlineClose, AiOutlineEdit} from "react-icons/ai";
 import Cropper from "react-easy-crop";
+import {CropperStyle} from "../../types";
 
 const UserProfilePage: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>()
@@ -25,6 +26,14 @@ const UserProfilePage: React.FC = () => {
     const [crop, setCrop] = useState({x: 0, y: 0})
     const [zoom, setZoom] = useState(1)
     const inputImgRef = useRef<HTMLInputElement>(null)
+    const [cropperStyle, setCropperStyle] = useState<CropperStyle>({
+        containerStyle: {
+            height: '250px',
+            width: '250px',
+        },
+        mediaStyle: {},
+        cropAreaStyle: {}
+    })
 
     const toggle = () => {
         setMode(!isEditMode)
@@ -75,7 +84,7 @@ const UserProfilePage: React.FC = () => {
                 </IconWrapper>
                 <S_input_img type={'file'} accept={'image/*'} ref={inputImgRef} onChange={onFileChange}/>
             </S_div_0>
-            {isCropperOpen? (<Cropper onCropChange={setCrop} crop={crop} aspect={3/4} zoom={zoom} onZoomChange={setZoom} image={img}/>) : undefined}
+            {isCropperOpen? (<Cropper onCropChange={setCrop} crop={crop} aspect={3/4} zoom={zoom} onZoomChange={setZoom} image={img} style={cropperStyle}/>) : undefined}
             <S_div_1></S_div_1>
         </Wrapper>
     )

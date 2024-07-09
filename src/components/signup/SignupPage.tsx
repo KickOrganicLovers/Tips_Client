@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import styled from "styled-components";
-import {SignupPageState, UserScheme} from "../../typs";
+import {SignupPageState, UserScheme} from "../../types";
 import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {AppDispatch} from "../../redux/store";

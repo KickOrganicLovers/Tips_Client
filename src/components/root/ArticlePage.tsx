@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import ArticleContainer from "./ArticleContainer";
-import {ArticleScheme} from "../../typs";
+import {ArticleScheme} from "../../types";
 import {useDispatch} from "react-redux";
 import {AppDispatch} from "../../redux/store";
 import {setPageMode} from "../../redux/PageModeSlice";
@@ -21,7 +21,7 @@ const ArticlePage: React.FC = () => {
     }, [])
 
     async function fetchData() {
-        const res = await fetch('http://localhost:5000/get')
+        const res = await fetch('http://localhost:5005/get')
         const data = await res.json()
         console.log(data)
         if (Array.isArray(data)) {

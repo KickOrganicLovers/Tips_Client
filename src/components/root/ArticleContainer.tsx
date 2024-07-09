@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import React from "react";
-import {ArticleScheme} from "../../typs";
+import {ArticleScheme} from "../../types";
 
 const ArticleContainer: React.FC<ArticleScheme> = (props: ArticleScheme) => {
     return (

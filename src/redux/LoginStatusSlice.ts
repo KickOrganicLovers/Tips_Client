@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {LoginScheme} from "../typs";
+import {LoginScheme} from "../types";
 
 const loginStatusSlice = createSlice({
     name: 'LoginStatus',

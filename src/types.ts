@@ -1,3 +1,5 @@
+import * as React from "react";
+
 export interface CategoryScheme {
     title: string
     details: string[]
@@ -27,4 +29,10 @@ export interface UserScheme{
 export interface SignupPageState{
     hasError?: boolean,
     contents?: string
+}
+
+export interface CropperStyle {
+    containerStyle?: React.CSSProperties;
+    mediaStyle?: React.CSSProperties;
+    cropAreaStyle?: React.CSSProperties;
 }
