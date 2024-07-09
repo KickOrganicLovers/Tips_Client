@@ -13,11 +13,11 @@ const ArticlePage: React.FC = () => {
 
     useEffect(() => {
         dispatch(setPageMode('home'))
-        fetchData().then((val) => {
-            if (val !== undefined) {
-                setArticleArray(val)
-            }
-        })
+        // fetchData().then((val) => {
+        //     if (val !== undefined) {
+        //         setArticleArray(val)
+        //     }
+        // })
     }, [])
 
     async function fetchData() {
