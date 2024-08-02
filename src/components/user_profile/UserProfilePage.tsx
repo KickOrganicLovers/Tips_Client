@@ -3,13 +3,15 @@ import React, {useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "../../redux/store";
 import {setPageMode} from "../../redux/PageModeSlice";
+import {enable as FLS_enable} from "../../redux/FadeLayerStatusSlice"
 import {Link} from "react-router-dom";
 import {AiFillPlusCircle, AiOutlineCheck, AiOutlineClose, AiOutlineEdit} from "react-icons/ai";
 import Cropper from "react-easy-crop";
+import {CropperStyle} from "../../typs";
 
 const UserProfilePage: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>()
-    const LS = useSelector<RootState, RootState['LoginStatus']>((state) => state.LoginStatus)
+    const FLS = useSelector<RootState, RootState['FadeLayerStatus']>((state) => state.FadeLayerStatus)
 
 
     const [isEditMode, setMode] = useState(false)
@@ -25,6 +27,11 @@ const UserProfilePage: React.FC = () => {
     const [crop, setCrop] = useState({x: 0, y: 0})
     const [zoom, setZoom] = useState(1)
     const inputImgRef = useRef<HTMLInputElement>(null)
+    const [cropperStyle, setCropperStyle] = useState<CropperStyle>({
+        containerStyle: {width: '200px', height: '200px'},
+        mediaStyle: {},
+        cropAreaStyle: {}
+    })
 
     const toggle = () => {
         setMode(!isEditMode)
@@ -37,6 +44,8 @@ const UserProfilePage: React.FC = () => {
                 if(reader.result){
                     setImg(reader.result.toString())
                     setCropperMode(true)
+                    dispatch(FLS_enable())
+                    console.log(FLS.isActive? 'fls is active' : 'fls is not active')
                 }
             }
             reader.readAsDataURL(e.target.files[0])
@@ -75,7 +84,7 @@ const UserProfilePage: React.FC = () => {
                 </IconWrapper>
                 <S_input_img type={'file'} accept={'image/*'} ref={inputImgRef} onChange={onFileChange}/>
             </S_div_0>
-            {isCropperOpen? (<Cropper onCropChange={setCrop} crop={crop} aspect={3/4} zoom={zoom} onZoomChange={setZoom} image={img}/>) : undefined}
+            {isCropperOpen? (<Cropper onCropChange={setCrop} crop={crop} aspect={3/4} zoom={zoom} onZoomChange={setZoom} image={img} style={cropperStyle}/>) : undefined}
             <S_div_1></S_div_1>
         </Wrapper>
     )

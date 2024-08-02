@@ -4,7 +4,8 @@ import {AiOutlinePlusCircle} from "react-icons/ai";
 import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "../../redux/store";
 import {Link, useNavigate} from "react-router-dom";
-import {disable, enable, toggle} from "../../redux/SideBarStatusSlice";
+import {disable as SBS_disable} from "../../redux/SideBarStatusSlice";
+import {disable as FLS_disable} from "../../redux/FadeLayerStatusSlice"
 
 const AccountBanner: React.FC = () => {
     const LS = useSelector<RootState, RootState['LoginStatus']>((state) => state.LoginStatus)
@@ -15,22 +16,22 @@ const AccountBanner: React.FC = () => {
 
     const clickEventHandler_navigateToLogin = () => {
         navigate('/login')
-        dispatch(disable())
+        dispatch(SBS_disable(), FLS_disable())
     }
 
     const clickEventHandler_navigateToSignup = () => {
         navigate('/signup')
-        dispatch(disable())
+        dispatch(SBS_disable(), FLS_disable())
     }
 
     const clickEventHandler_navigateToCreateArticle = () => {
         navigate('/create_article')
-        dispatch(disable())
+        dispatch(SBS_disable(), FLS_disable())
     }
 
     const clickEventHandler_navigateToUserProfile = () => {
         navigate('/user_profile')
-        dispatch(disable())
+        dispatch(SBS_disable(), FLS_disable())
     }
 
     return (<Wrapper>

@@ -1,8 +1,10 @@
-import React, {createContext, useCallback, useState} from "react";
+import React, {createContext, Dispatch, useCallback, useState} from "react";
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "../../redux/store";
-import {toggle} from "../../redux/SideBarStatusSlice";
+import {toggle as SBS_toggle} from "../../redux/SideBarStatusSlice";
+import {toggle as FLS_toggle} from "../../redux/FadeLayerStatusSlice"
+
 import {AiOutlineMenu} from "react-icons/ai";
 
 
@@ -15,7 +17,9 @@ const CategoryBtn: React.FC = () => {
 
 
     const clickEventHandler = () => {
-        dispatch(toggle())
+        dispatch(FLS_toggle())
+        // dispatch(SBS_toggle())
+        // dispatch(FLS_toggle())
     }
 
     return (

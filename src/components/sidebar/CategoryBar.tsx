@@ -34,7 +34,6 @@ const Wrapper = styled.div<{ isActive: boolean }>`
         min-width: 0px;
         height: 92vh;
         width: ${(props) => {
-            console.log(props.isActive)
             return props.isActive ? '40vw' : '0px'
         }};
         transition: width 0.5s;
