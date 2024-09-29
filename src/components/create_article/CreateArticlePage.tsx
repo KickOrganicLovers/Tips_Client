@@ -1,9 +1,10 @@
 import styled from "styled-components";
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {useDispatch} from "react-redux";
 import {AppDispatch} from "../../redux/store";
 import {setPageMode} from "../../redux/PageModeSlice";
-import {AiOutlinePlus} from "react-icons/ai";
+import {AiOutlineCheck, AiOutlineClose, AiOutlinePlus} from "react-icons/ai";
+import Cropper, {CropperProps, Point} from "react-easy-crop";
 
 const CreateArticlePage: React.FC = () => {
     const  [Title, setTitle] = useState<string>('タイトルを入力してください')
@@ -13,16 +14,78 @@ const CreateArticlePage: React.FC = () => {
     const [illustration, setIllustration] = useState<Array<string>>()
     const [thumbnail, setThumbnail] = useState<string>()
 
+    const [cropperProps, setCropperProps] = useState<CropperProps>({
+        image: '',
+        crop: {x: 0, y: 0},
+        zoom: 1,
+        rotation: 0,
+        aspect: 4/3,
+        minZoom: 1,
+        maxZoom: 1,
+        cropShape: "rect",
+        zoomSpeed: 1,
+        onCropChange: (location: Point) => {
+            setCropperProps(state => {
+                return {...state, crop: location}
+            })
+        },
+        onZoomChange: (zoom: number) => {
+            setCropperProps(state => {
+                return {...state, zoom: zoom}
+            })
+        },
+        onRotationChange: (rotation: number) => {
+            setCropperProps(state => {
+                return {...state, rotation: rotation}
+            })
+        },
+        style: {
+            containerStyle: {width: '100%', aspectRatio: 4/3, position: "relative"},
+            cropAreaStyle: {boxShadow: '0 0 0 9999em rgba(0, 0, 0, 0.5'}
 
-
-
-
+        },
+        classes: {},
+        restrictPosition: false,
+        mediaProps: {},
+        // cropSize: {width: 500, height: 500},
+        objectFit: 'cover',
+        showGrid: false,
+    })
+    const [isThumbnailEditorOpen, setIsThumbnailEditorOpen] = useState<boolean>(false)
+    const [isCategoryEditorOpen, setIsCategoryEditorOpen] = useState<boolean>(false)
     const [isTagAdderFocused, setIsTagAdderFocused] = useState(false)
 
     const dispatch = useDispatch<AppDispatch>()
     useEffect(() => {
         dispatch(setPageMode('create_article'))
     })
+
+    const inputImgRef = useRef<HTMLInputElement>(null)
+    const onThumbnailEditingButtonClicked = () => {
+        inputImgRef.current?.click()
+    }
+
+    const onInitialThumbnailInputted = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files.length > 0) {
+            const reader = new FileReader()
+            reader.onloadend = () => {
+                if (reader.result) {
+                    setCropperProps(state => {
+                        return {...state, image: reader.result?.toString()}
+                    })
+                    setIsThumbnailEditorOpen(true)
+                }
+            }
+            reader.readAsDataURL(e.target.files[0])
+        }
+    }
+
+    const onCategoryEditingButtonClicked = () => {
+        setIsCategoryEditorOpen(true)
+    }
+
+
+
     return (
         <Wrapper>
             <S_h1>
@@ -32,8 +95,9 @@ const CreateArticlePage: React.FC = () => {
                 <S_div_4>
                     <S_input_text_0 type='text'></S_input_text_0>
                     <S_div_6>
-                        <S_button_0>サムネイル</S_button_0>
-                        <S_button_0>カテゴリー</S_button_0>
+                        <S_button_0 onClick={onThumbnailEditingButtonClicked}>サムネイル</S_button_0>
+                        <S_input_file type={'file'} accept={'image/*'} ref={inputImgRef} onChange={onInitialThumbnailInputted}/>
+                        <S_button_0 onClick={onCategoryEditingButtonClicked}>カテゴリー</S_button_0>
                     </S_div_6>
                 </S_div_4>
                 <S_div_5>
@@ -54,6 +118,51 @@ const CreateArticlePage: React.FC = () => {
                     <S_button_2>中止</S_button_2>
                 </S_div_7>
             </S_div_2>
+            {(() => isThumbnailEditorOpen?
+                <ThumbnailEditCard>
+                    <Cropper onCropChange={cropperProps.onCropChange}
+                             crop={cropperProps.crop}
+                             aspect={cropperProps.aspect}
+                             zoom={cropperProps.zoom}
+                             rotation={cropperProps.rotation}
+                             onZoomChange={cropperProps.onZoomChange}
+                             onRotationChange={cropperProps.onRotationChange}
+                             image={cropperProps.image}
+                             style={cropperProps.style}
+                             cropShape={cropperProps.cropShape}
+                             cropSize={cropperProps.cropSize}
+                             objectFit={cropperProps.objectFit}
+                             showGrid={cropperProps.showGrid}></Cropper>
+                    <ZoomSlider>
+                        <S_p_1>
+                            Zoom
+                        </S_p_1>
+                        <S_input_range
+                            type='range'
+                            value={cropperProps.zoom}
+                            min={1}
+                            max={3}
+                            step={0.1}
+                            aria-labelledby="Zoom"
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                                cropperProps.onZoomChange?.(Number(e.target.value))
+                            }}
+                        />
+                    </ZoomSlider>
+                    <CheckBoxWrapper>
+                        <S_AiOutlineCheck/>
+                        <S_AiOutlineClose/>
+                    </CheckBoxWrapper>
+                </ThumbnailEditCard>
+                : null)()}
+            {(() => isCategoryEditorOpen?
+                <CategoryEditCard>
+                    <S_div_8></S_div_8>
+                    <S_div_9></S_div_9>
+                    <S_div_10></S_div_10>
+                </CategoryEditCard>
+                : null)()}
+            {(() => isThumbnailEditorOpen || isCategoryEditorOpen? <FadeLayer></FadeLayer> : null)()}
         </Wrapper>
     )
 }
@@ -61,6 +170,7 @@ const CreateArticlePage: React.FC = () => {
 export default CreateArticlePage
 
 const Wrapper = styled.div`
+    position: relative;
     width: 80%;
     height: 100%;
     background-color: #424242;
@@ -244,4 +354,134 @@ const S_button_2 = styled(S_button)`
     &:hover{
         color: hotpink;
     }
+`
+
+const ThumbnailEditCard = styled.div`
+    position: absolute;
+    z-index: 25;
+    width: 700px;
+    height: 700px;
+    background-color: #424242;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+`
+
+const CategoryEditCard = styled.div`
+    position: absolute;
+    z-index: 25;
+    width: 700px;
+    height: 700px;
+    background-color: #424242;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+`
+
+const FadeLayer = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.5;
+`
+
+
+const S_input_file = styled.input`
+    display: none;
+`
+
+const ZoomSlider = styled.div`
+    position: relative;
+    width: 100%;
+    height: 10%;
+`
+
+const S_p_1 = styled.p`
+    position: absolute;
+    margin: 0;
+    padding: 0 0 0 1vw;
+    left: 0;
+    width: 25%;
+    height: 100%;
+    font-size: 1.5vh;
+    line-height: 6vh;
+    box-sizing: border-box;
+    color: white;
+`
+
+const S_input_range = styled.input`
+    width: 75%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 1vw;
+    box-sizing: border-box;
+`
+
+const CheckBoxWrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 3vw;
+    position: relative;
+    width: 100%;
+    height: 7.5%;
+    margin-top: 2vh;
+`
+const S_AiOutlineCheck = styled(AiOutlineCheck)`
+    height: 100%;
+    width: auto;
+    color: lightgray;
+
+    &:hover {
+        transition: 0.2s;
+        color: cyan;
+    }
+
+`
+
+const S_AiOutlineClose = styled(AiOutlineClose)`
+    height: 100%;
+    width: auto;
+    color: lightgray;
+
+    &:hover {
+        transition: 0.2s;
+        color: hotpink;
+    }
+`
+
+const S_div_8 = styled.div`
+    width: 100%;
+    height: 10%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-bottom: solid white 2px;
+    box-sizing: border-box;
+`
+
+const S_div_9 = styled.div`
+    width: 50%;
+    height: 90%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+`
+
+const S_div_10 = styled.div`
+    width: 50%;
+    height: 90%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
 `
