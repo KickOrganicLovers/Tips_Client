@@ -72,7 +72,7 @@ const S_li_1 = styled.li`
 `
 const S_li_2 = styled.li`
     list-style: none;
-    display: none;
+    display: none;  
     @media screen and (max-width: 1024px) {
         display: list-item;
     }

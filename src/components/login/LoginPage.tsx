@@ -146,7 +146,7 @@ const S_input_text = styled.input`
         color: red;
     }
     &:focus{
-        outline: 2px solid lightgray;
+        outline: 2px solid white;
     };`
 
 const S_button = styled.button`
