@@ -382,17 +382,6 @@ const CategoryEditCard = styled.div`
     margin: auto;
 `
 
-const FadeLayer = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 20;
-    width: 100%;
-    height: 100%;
-    background-color: black;
-    opacity: 0.5;
-`
-
 
 const S_input_file = styled.input`
     display: none;
