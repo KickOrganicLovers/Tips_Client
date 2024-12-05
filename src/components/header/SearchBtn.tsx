@@ -7,6 +7,7 @@ import {useNavigate} from "react-router-dom";
 
 const SearchBtn: React.FC = () => {
     const navigate = useNavigate()
+
     const SPM = useSelector<RootState, RootState['PageMode']>((state) => {
         return state.PageMode
     })
@@ -30,3 +31,22 @@ const S_AiOutlineSearch = styled(AiOutlineSearch)<{ pageMode: string }>`
     color: ${(props) => {
         return props.pageMode === 'search' ? 'white' : 'darkgrey'
     }}`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
